@@ -1,0 +1,85 @@
+body {
+  background-color: #0079bf;
+}
+
+.navbarContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0067a3;
+  height: 55px;
+  width: 100%;
+}
+
+.navbarText {
+  color: white;
+  font-size: 20px;
+  padding-left: 15px;
+}
+
+.blockProfile {
+  display: flex;
+  position: relative;
+  cursor: pointer;
+  padding-right: 15px;
+}
+
+.profilePhoto {
+  display: flex;
+  justify-content: center;
+  background-color: white;
+  border-radius: 100%;
+  padding: 2px;
+  width: 38px;
+  height: 38px;
+}
+
+.photo {
+  width: 27px;
+  height: 34px;
+  padding-top: 6px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 20px;
+}
+
+.dropMenu {
+  position: absolute;
+  height: 60px;
+  width: 134px;
+  border-radius: 5px;
+  background-color: white;
+  margin-top: 56px;
+  right: 6px;
+}
+
+.rhombus {
+  height: 11px;
+  width: 11px;
+  background-color: white;
+  transform: rotate(45deg);
+  margin-left: 80px;
+  margin-top: -6px;
+  z-index: 0;
+  position: absolute;
+}
+
+.dropMenuText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 6px;
+  height: 100%;
+  width: 100%;
+}
+
+.dropMenuText div:hover{
+  text-decoration: underline;
+  color: #0067a3;
+}
