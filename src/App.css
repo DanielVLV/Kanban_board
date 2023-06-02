@@ -1,4 +1,5 @@
 body {
+  margin: 0;
   background-color: #0079bf;
 }
 
@@ -79,7 +80,86 @@ body {
   width: 100%;
 }
 
-.dropMenuText div:hover{
+.dropMenuText div:hover {
   text-decoration: underline;
   color: #0067a3;
+}
+
+.dashBoard {
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;
+  padding-top: 20px;
+}
+
+.dashBoardCategory {
+  display: flex;
+  flex-direction: column;
+  width: 282px;
+  height: max-content;
+  background-color: #ebecf0;
+  padding: 12px;
+  border-radius: 10px;
+}
+
+.buttonAddCard {
+  display: flex;
+  color: #5e6c84;
+  border: none;
+  background-color: #ebecf0;
+  padding: 0;
+}
+
+.footerContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0067a3;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 55px;
+  font-size: 18px;
+  color: white;
+}
+
+.tasksCount {
+  padding: 0 20px;
+}
+
+.containerTask {
+  position: relative;
+  margin: 30px;
+  border-radius: 5px;
+  background-color: white;
+  min-height: 550px;
+}
+
+.buttonNavigate {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 25px;
+  color: grey;
+  border: none;
+  background-color: white;
+}
+
+.taskBody {
+  padding: 22px 28px;
+}
+
+.taskTextH1 {
+  font-size: 24px;
+}
+
+.taskTextH3 {
+  margin-top: 30px;
+  padding: 5px;
+  margin-left: 1px;
+  width: 631px;
+  font-size: 18px;
+  height: 430px;
+  border: none;
+  resize: none;
 }

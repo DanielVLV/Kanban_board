@@ -6,7 +6,8 @@ function Navbar() {
   const [dropMenu, setDropMenu] = useState(false);
 
   function handleProfile() {
-    setDropMenu(true);
+    if (dropMenu) setDropMenu(false);
+    else setDropMenu(true);
   }
 
   function handleVisible() {
