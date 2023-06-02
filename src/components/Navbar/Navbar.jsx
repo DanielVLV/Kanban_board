@@ -30,8 +30,13 @@ function Navbar() {
           />
         </div>
         <div className="list">
-          <img className="rowImg" src="/img/row.png" alt="list" />
+          {dropMenu ? (
+            <img className="rowImg" src="/img/row.png" alt="list" />
+          ) : (
+            <img src="/img/row.png" alt="list" />
+          ) }
         </div>
+
         {dropMenu && (
           <div
             className="dropMenu"

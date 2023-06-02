@@ -50,6 +50,10 @@ body {
   width: 20px;
 }
 
+.rowImg {
+  transform: rotate(180deg);
+}
+
 .dropMenu {
   position: absolute;
   height: 60px;

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable array-callback-return */
 import { v4 as uuidv4 } from 'uuid';
 import React, { useEffect, useState } from 'react';
@@ -7,6 +8,18 @@ function Dashboard({ setCountActive, setCountFinished }) {
   const [arrayBackLog, setArrayBackLog] = useState([]);
   const [addBackLog, setAddBackLog] = useState(true);
   const [backLogInput, setBackLogInput] = useState('');
+
+  const [addReady, setAddReady] = useState(true);
+  const [selectedReady, setSelectedReady] = useState('');
+  const [arrayReady, setArrayReady] = useState([]);
+
+  const [addInProgress, setAddInProgress] = useState(true);
+  const [selectedInProgress, setSelectedInProgress] = useState('');
+  const [arrayInProgress, setArrayInProgress] = useState([]);
+
+  const [addFinished, setAddFinished] = useState(true);
+  const [selectedFinished, setSelectedFinished] = useState('');
+  const [arrayFinished, setArrayFinished] = useState([]);
 
   function handleCreateBacklog() {
     setAddBackLog(false);
@@ -27,20 +40,93 @@ function Dashboard({ setCountActive, setCountFinished }) {
     setAddBackLog(true);
   }
 
+  const handleChangeReady = (event) => {
+    setSelectedReady(event.target.value);
+    const selectedOption = event.target.options[event.target.selectedIndex];
+    const dataId = selectedOption.getAttribute('data-id');
+    if (dataId) {
+      const selectedBacklog = arrayBackLog.find((e) => e.id === dataId);
+      setArrayBackLog((prev) => prev.filter((e) => e.id !== dataId));
+      setArrayReady((prev) => [...prev, selectedBacklog]);
+    }
+  };
+
+  const handleChangeInProgress = (event) => {
+    setSelectedInProgress(event.target.value);
+    const selectedOption = event.target.options[event.target.selectedIndex];
+    const dataId = selectedOption.getAttribute('data-id');
+    if (dataId) {
+      const selectedBacklog = arrayReady.find((e) => e.id === dataId);
+      setArrayReady((prev) => prev.filter((e) => e.id !== dataId));
+      setArrayInProgress((prev) => [...prev, selectedBacklog]);
+    }
+  };
+
+  const handleChangeFinished = (event) => {
+    setSelectedFinished(event.target.value);
+    const selectedOption = event.target.options[event.target.selectedIndex];
+    const dataId = selectedOption.getAttribute('data-id');
+    if (dataId) {
+      const selectedBacklog = arrayInProgress.find((e) => e.id === dataId);
+      setArrayInProgress((prev) => prev.filter((e) => e.id !== dataId));
+      setArrayFinished((prev) => [...prev, selectedBacklog]);
+    }
+  };
+
+  useEffect(() => {
+    setCountActive(arrayInProgress.length);
+  }, [arrayInProgress.length]);
+
+  useEffect(() => {
+    setCountFinished(arrayFinished.length);
+  }, [arrayFinished.length]);
+
   useEffect(() => {
     const localArrayBackLog = JSON.parse(localStorage.getItem('localArrayBackLog'));
     if (!localArrayBackLog) localStorage.setItem('localArrayBackLog', JSON.stringify([]));
     else setArrayBackLog(localArrayBackLog);
   }, []);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    const localArrayReady = JSON.parse(localStorage.getItem('localArrayReady'));
+    if (!localArrayReady) localStorage.setItem('localArrayReady', JSON.stringify([]));
+    else setArrayReady(localArrayReady);
+  }, []);
+
+  useEffect(() => {
+    const localArrayInProgress = JSON.parse(localStorage.getItem('localArrayInProgress'));
+    if (!localArrayInProgress) localStorage.setItem('localArrayInProgress', JSON.stringify([]));
+    else setArrayInProgress(localArrayInProgress);
+  }, []);
+
+  useEffect(() => {
+    const localArrayFinished = JSON.parse(localStorage.getItem('localArrayFinished'));
+    if (!localArrayFinished) localStorage.setItem('localArrayFinished', JSON.stringify([]));
+    else setArrayFinished(localArrayFinished);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('localArrayBackLog', JSON.stringify(arrayBackLog));
+  }, [arrayBackLog]);
+
+  useEffect(() => {
+    localStorage.setItem('localArrayReady', JSON.stringify(arrayReady));
+  }, [arrayReady]);
+
+  useEffect(() => {
+    localStorage.setItem('localArrayInProgress', JSON.stringify(arrayInProgress));
+  }, [arrayInProgress]);
+
+  useEffect(() => {
+    localStorage.setItem('localArrayFinished', JSON.stringify(arrayFinished));
+  }, [arrayFinished]);
 
   return (
     <div className="dashBoard">
       <div className="dashBoardCategory">
         Backlog
         {arrayBackLog.map((e) => (
-          <Link to={{ pathname: `/tasks/${e.id}`, search: `?title=${e.title}` }}>
+          <Link to={{ pathname: `/tasks/${e.id}`, search: `?title=${e.title}&category=backLog` }}>
             <div key={e?.id}>{e?.title}</div>
           </Link>
         ))}
@@ -69,33 +155,82 @@ function Dashboard({ setCountActive, setCountFinished }) {
       </div>
       <div className="dashBoardCategory">
         Ready
-        <button
-          className="buttonAddCard"
-          type="button"
-          // onClick={}
-        >
-          + Add card
-        </button>
+        {arrayReady.map((e) => (
+          <Link to={{ pathname: `/tasks/${e.id}`, search: `?title=${e.title}&category=ready` }}>
+            <div key={e?.id}>{e?.title}</div>
+          </Link>
+        ))}
+        {addReady ? (
+          <button
+            className="buttonAddCard"
+            type="button"
+            onClick={() => setAddReady(false)}
+          >
+            + Add card
+          </button>
+        ) : (
+          <div>
+            <select value={selectedReady} onChange={handleChangeReady}>
+              <option />
+              {arrayBackLog.map((e) => (
+                <option data-id={e.id} value={e.title}>{e.title}</option>
+              ))}
+            </select>
+          </div>
+        )}
+
       </div>
       <div className="dashBoardCategory">
         In progress
-        <button
-          className="buttonAddCard"
-          type="button"
-          // onClick={handleCreateCard}
-        >
-          + Add card
-        </button>
+        {arrayInProgress.map((e) => (
+          <Link to={{ pathname: `/tasks/${e.id}`, search: `?title=${e.title}&category=inprogress` }}>
+            <div key={e?.id}>{e?.title}</div>
+          </Link>
+        ))}
+        {addInProgress ? (
+          <button
+            className="buttonAddCard"
+            type="button"
+            onClick={() => setAddInProgress(false)}
+          >
+            + Add card
+          </button>
+        ) : (
+          <div>
+            <select value={selectedInProgress} onChange={handleChangeInProgress}>
+              <option />
+              {arrayReady.map((e) => (
+                <option data-id={e.id} value={e.title}>{e.title}</option>
+              ))}
+            </select>
+          </div>
+        )}
       </div>
       <div className="dashBoardCategory">
         Finished
-        <button
-          className="buttonAddCard"
-          type="button"
-          // onClick={handleCreateCard}
-        >
-          + Add card
-        </button>
+        {arrayFinished.map((e) => (
+          <Link to={{ pathname: `/tasks/${e.id}`, search: `?title=${e.title}&category=finished` }}>
+            <div key={e?.id}>{e?.title}</div>
+          </Link>
+        ))}
+        {addFinished ? (
+          <button
+            className="buttonAddCard"
+            type="button"
+            onClick={() => setAddFinished(false)}
+          >
+            + Add card
+          </button>
+        ) : (
+          <div>
+            <select value={selectedFinished} onChange={handleChangeFinished}>
+              <option />
+              {arrayInProgress.map((e) => (
+                <option data-id={e.id} value={e.title}>{e.title}</option>
+              ))}
+            </select>
+          </div>
+        )}
       </div>
     </div>
   );
