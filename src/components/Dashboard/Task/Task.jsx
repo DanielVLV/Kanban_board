@@ -1,37 +1,43 @@
-import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function Task() {
   const navigate = useNavigate();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const title = searchParams.get('title');
-  const category = searchParams.get('category');
-  const [description, setDescription] = useState('');
-  const id = location.pathname.split('/').pop();
+  const title = searchParams.get("title");
+  const category = searchParams.get("category");
+  const [description, setDescription] = useState("");
+  const id = location.pathname.split("/").pop();
 
-  const localArrayBackLog = JSON.parse(localStorage.getItem('localArrayBackLog'));
-  const localArrayReady = JSON.parse(localStorage.getItem('localArrayReady'));
-  const localArrayInProgress = JSON.parse(localStorage.getItem('localArrayInProgress'));
-  const localArrayFinished = JSON.parse(localStorage.getItem('localArrayFinished'));
+  const localArrayBackLog = JSON.parse(
+    localStorage.getItem("localArrayBackLog")
+  );
+  const localArrayReady = JSON.parse(localStorage.getItem("localArrayReady"));
+  const localArrayInProgress = JSON.parse(
+    localStorage.getItem("localArrayInProgress")
+  );
+  const localArrayFinished = JSON.parse(
+    localStorage.getItem("localArrayFinished")
+  );
 
   let findArray;
   let findLocalName;
-  if (category === 'backLog') {
+  if (category === "backLog") {
     findArray = localArrayBackLog;
-    findLocalName = 'localArrayBackLog';
+    findLocalName = "localArrayBackLog";
   }
-  if (category === 'ready') {
+  if (category === "ready") {
     findArray = localArrayReady;
-    findLocalName = 'localArrayReady';
+    findLocalName = "localArrayReady";
   }
-  if (category === 'inprogress') {
+  if (category === "inprogress") {
     findArray = localArrayInProgress;
-    findLocalName = 'localArrayInProgress';
+    findLocalName = "localArrayInProgress";
   }
-  if (category === 'finished') {
+  if (category === "finished") {
     findArray = localArrayFinished;
-    findLocalName = 'localArrayFinished';
+    findLocalName = "localArrayFinished";
   }
 
   useEffect(() => {
@@ -58,7 +64,7 @@ function Task() {
       });
       localStorage.setItem(findLocalName, JSON.stringify(updatedArray));
     }
-    navigate('/');
+    navigate("/");
   }
 
   return (
@@ -67,7 +73,6 @@ function Task() {
         className="buttonNavigate"
         type="submit"
         onClick={handleCloseTask}
-
       >
         ⨉
       </button>
@@ -81,7 +86,6 @@ function Task() {
         />
       </div>
     </div>
-
   );
 }
 

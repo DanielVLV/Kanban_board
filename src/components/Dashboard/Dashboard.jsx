@@ -167,15 +167,18 @@ function Dashboard({ setCountActive, setCountFinished }) {
               onChange={(e) => setBackLogInput(e.target.value)}
               type="text"
               className="inputText"
+              placeholder="_________________"
               maxLength={30}
             />
-            <button
-              className="buttonSubmit"
-              type="submit"
-              onClick={handleSubmit}
-            >
-              Submit
-            </button>
+            <div>
+              <button
+                className="buttonSubmit"
+                type="submit"
+                onClick={handleSubmit}
+              >
+                Submit
+              </button>
+            </div>
           </>
         )}
       </div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 function Navbar() {
   const [dropMenu, setDropMenu] = useState(false);
@@ -32,7 +32,7 @@ function Navbar() {
             <img className="rowImg" src="/img/row.png" alt="list" />
           ) : (
             <img src="/img/row.png" alt="list" />
-          ) }
+          )}
         </div>
 
         {dropMenu && (

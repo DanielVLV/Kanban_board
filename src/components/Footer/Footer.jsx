@@ -1,13 +1,11 @@
-import React from 'react';
+import React from "react";
 
 function Footer({ counterActive, counterFinished }) {
   return (
     <div className="footerContainer">
       <div>
         <div>
-          <span className="tasksCount">
-            {`Active tasks: ${counterActive}`}
-          </span>
+          <span className="tasksCount">{`Active tasks: ${counterActive}`}</span>
           <span className="tasksCount">
             {`Finished tasks: ${counterFinished}`}
           </span>
