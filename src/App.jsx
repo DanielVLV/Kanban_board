@@ -20,7 +20,7 @@ function App() {
               setCountActive={setCountActive}
               setCountFinished={setCountFinished}
             />
-)}
+          )}
         />
         <Route path="/tasks/:id" element={<Task />} />
       </Routes>

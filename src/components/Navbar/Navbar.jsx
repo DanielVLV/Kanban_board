@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useState } from 'react';
 
 function Navbar() {
@@ -45,7 +43,7 @@ function Navbar() {
           >
             <div className="rhombus" />
             <div className="dropMenuText">
-              <div>Profile</div>
+              <div className="profile">Profile</div>
               <div>Log Out</div>
             </div>
           </div>

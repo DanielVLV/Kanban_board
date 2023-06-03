@@ -14,8 +14,13 @@ body {
 
 .navbarText {
   color: white;
-  font-size: 20px;
   padding-left: 15px;
+  cursor: default;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 33px;
 }
 
 .blockProfile {
@@ -62,6 +67,7 @@ body {
   background-color: white;
   margin-top: 56px;
   right: 6px;
+  z-index: 1;
 }
 
 .rhombus {
@@ -82,11 +88,29 @@ body {
   padding-left: 6px;
   height: 100%;
   width: 100%;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.profile {
+  margin-bottom: 5px;
 }
 
 .dropMenuText div:hover {
   text-decoration: underline;
   color: #0067a3;
+}
+
+.footerContainer {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  cursor: default;
 }
 
 .dashBoard {
@@ -100,10 +124,18 @@ body {
   display: flex;
   flex-direction: column;
   width: 282px;
+  max-height: 538px;
   height: max-content;
   background-color: #ebecf0;
   padding: 12px;
   border-radius: 10px;
+  overflow: auto;
+  cursor: default;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
 }
 
 .buttonAddCard {
@@ -112,6 +144,31 @@ body {
   border: none;
   background-color: #ebecf0;
   padding: 0;
+  cursor: pointer;
+  margin-top: 20px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  border-radius: 5px;
+  width: 102px;
+  height: 29px;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.buttonAddCard:hover {
+  color: #272d37;
+}
+
+.buttonAddCard:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.buttonAddCard:disabled:hover {
+  color: #5e6c84;
 }
 
 .footerContainer {
@@ -147,6 +204,7 @@ body {
   color: grey;
   border: none;
   background-color: white;
+  cursor: pointer;
 }
 
 .taskBody {
@@ -154,7 +212,12 @@ body {
 }
 
 .taskTextH1 {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
   font-size: 24px;
+  line-height: 28px;
+  cursor: default;
 }
 
 .taskTextH3 {
@@ -162,8 +225,109 @@ body {
   padding: 5px;
   margin-left: 1px;
   width: 631px;
-  font-size: 18px;
   height: 430px;
   border: none;
   resize: none;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+}
+
+.inputText {
+  max-width: 258px;
+  min-height: 35px;
+  border-radius: 5px;
+  border: none;
+  margin-top: 10px;
+}
+.buttonSubmit {
+  background: #0079bf;
+  border-radius: 5px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  text-align: center;
+  color: white;
+  border: none;
+  margin: 7px 0;
+  width: 102px;
+  height: 29px;
+  cursor: pointer;
+}
+
+.oneLinkTaskTitle {
+  text-decoration: none;
+  color: black;
+}
+
+.oneTaskTitle {
+  word-wrap: break-word;
+  max-width: 258px;
+  min-height: 35px;
+  background-color: white;
+  margin: 7.5px 0;
+  padding: 7px 9px 7px 8px;
+  border-radius: 5px;
+  overflow: auto;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+}
+
+.selectStyle {
+  width: 258px;
+  min-height: 35px;
+  background-color: white;
+  margin: 7.5px 0;
+  padding: 7px 9px 7px 8px;
+  border-radius: 5px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+}
+
+@media (max-width: 767px) {
+  .navbarContainer {
+    flex-direction: row-reverse;
+    background-color: #0079bf;
+  }
+
+  .navbarText {
+    display: none;
+  }
+
+  .footerContainer {
+    display: none;
+  }
+
+  .dashBoard {
+    margin: 100px 35px 0 21px;
+    flex-direction: column;
+  }
+
+  .dashBoardCategory {
+    margin-bottom: 35px;
+    max-height: 249px;
+    max-width: 282px;
+  }
+
+  .buttonAddCard {
+    background-color: white;
+  }
+
+  .taskTextH3 {
+    max-width: 249px;
+  }
+
+  option {
+    max-width: 20px;
+  }
 }
